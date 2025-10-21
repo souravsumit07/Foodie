@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 import cors from "cors"
 import { connectDb } from "./config/db_config.js";
 import foodRouter from "./routes/food.Routes.js";
+import userRouter from "./routes/user.Routes.js";
 dotenv.config()
 
 const app=express()
@@ -15,13 +16,8 @@ const port=process.env.PORT||3000
 connectDb()
 
 
-
-
-
-
-
-
 app.use("/api/food",foodRouter)
+app.use("/api/user",userRouter)
 
 app.listen(port,() => {
     console.log(`Server is running on http://localhost:${port}`);

@@ -1,23 +1,19 @@
+// routes/foodRouter.js
 import express from "express";
 import multer from "multer";
-import { addFood } from "../controllers/food.Controller.js";
+import { addFood, deleteFood, getFood } from "../controllers/food.Controller.js";
 
-const foodRoute = express.Router();
+const foodRouter = express.Router();
 
-// ✅ Fix: combine destination + filename in one object
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/"); // make sure this folder exists
-  },
-  filename: (req, file, cb) => {
-    // Always save as .png file
-    cb(null, Date.now() + `${file.originalname}`);
-  },
+  destination: (req, file, cb) => cb(null, "uploads/"),
+  filename: (req, file, cb) => cb(null, Date.now() + "-" + file.originalname),
 });
 
 const upload = multer({ storage });
 
-// ✅ Route for adding food
 foodRouter.post("/addfood", upload.single("image"), addFood);
+foodRouter.get("/getfood", getFood);
+foodRouter.delete("/deleteFood/:_id", deleteFood);
 
 export default foodRouter;

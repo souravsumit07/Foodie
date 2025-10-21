@@ -7,6 +7,7 @@ import Placeorders from './pages/Placeorders'
 import AOS from 'aos'
 import "aos/dist/aos.css"
 import LoginPopup from './components/LoginPopup'
+import { ToastContainer } from 'react-toastify';
 
 const App = () => {
   const [showLoginPopup, setShowLoginPopup] = useState(false)
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/order" element={<Placeorders />} />
       </Routes>
+      <ToastContainer/>
     </div>
   )
 }

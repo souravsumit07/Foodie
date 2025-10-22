@@ -24,7 +24,11 @@ const LoginPopup = ({ setShowLoginPopup }) => {
         localStorage.setItem("token", token);
         toast.success(res.data.message || "Success!");
         setShowLoginPopup(false);
-        
+        setTimeout(() => {
+    window.location.reload();
+  }, 1000);
+      }else{
+        toast.error(res.data.message)
       }
     } catch (error) {
       toast.error(error.response?.data?.message || "Something went wrong!");

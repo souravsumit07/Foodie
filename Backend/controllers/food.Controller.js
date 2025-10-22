@@ -11,7 +11,7 @@ export const addFood = async (req, res) => {
       description,
       category,
       price,
-      image: filename,
+      image: `http://localhost:3000/uploads/${req.file.filename}`,
     });
 
     await food.save();

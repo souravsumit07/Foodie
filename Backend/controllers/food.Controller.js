@@ -42,3 +42,19 @@ export const deleteFood = async (req, res) => {
     res.status(500).json({ success: false, message: "Server error" });
   }
 };
+
+export const getFoodById = async (req, res) => {
+  try {
+    const { _id } = req.params;
+    const food = await FoodModel.findById(_id);
+
+    if (food) {
+      res.status(200).json({ success: true, message: "Food fetched successfully", food });
+    } else {
+      res.status(404).json({ success: false, message: "No food found" });
+    }
+  } catch (error) {
+    console.error("Error getting food:", error);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+};
